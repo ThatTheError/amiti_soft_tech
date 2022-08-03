@@ -10,56 +10,56 @@
                     <img src="../assets/products/p1.jpg" alt="Hair Serum">
                     <h3>Hair Serum</h3>
                     <h3>$17.0</h3>
-                    <button class="add-cart cart1">Add Cart</button>
+                    <button class="add-cart cart1" v-on:click="cartNumbers(products[0])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p2.jpg" alt="Dry Shampoo">
                     <h3>Dry Shampoo</h3>
                     <h3>$14.0</h3>
-                    <button class="add-cart cart2">Add Cart</button>
+                    <button class="add-cart cart2" v-on:click="cartNumbers(products[1])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p3.jpg" alt="Hair Color">
                     <h3>Hair Color</h3>
                     <h3>$09.0</h3>
-                    <button class="add-cart cart3">Add Cart</button>
+                    <button class="add-cart cart3" v-on:click="cartNumbers(products[2])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p4.jpg" alt="Hair Mask">
                     <h3>Hair Mask</h3>
                     <h3>$11.0</h3>
-                    <button class="add-cart cart4">Add Cart</button>
+                    <button class="add-cart cart4" v-on:click="cartNumbers(products[3])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p5.jpg" alt="Hair Cream">
                     <h3>Hair Cream</h3>
                     <h3>$22.0</h3>
-                    <button class="add-cart cart5">Add Cart</button>
+                    <button class="add-cart cart5" v-on:click="cartNumbers(products[4])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p6.jpg" alt="Hair Wax">
                     <h3>Hair Wax</h3>
                     <h3>$24.0</h3>
-                    <button class="add-cart cart6">Add Cart</button>
+                    <button class="add-cart cart6" v-on:click="cartNumbers(products[5])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p7.jpg" alt="Hair Gel">
                     <h3>Hair Gel</h3>
                     <h3>$07.0</h3>
-                    <button class="add-cart cart7">Add Cart</button>
+                    <button class="add-cart cart7" v-on:click="cartNumbers(products[6])">Add Cart</button>
                 </div>
                 <div class="image">
                     <img src="../assets/products/p8.jpg" alt="Hair Spray">
                     <h3>Hair Spray</h3>
                     <h3>$27.0</h3>
-                    <button class="add-cart cart8">Add Cart</button>
+                    <button class="add-cart cart8" v-on:click="cartNumbers(products[7])">Add Cart</button>
                     <input type="hidden" value="10">
                 </div>
                 <div class="image">
                     <img src="../assets/products/p9.jpg" alt="Beardo Oil">
                     <h3>Beardo Oil</h3>
                     <h3>$19.0</h3>
-                    <button class="add-cart cart9">Add Cart</button>
+                    <button class="add-cart cart9" v-on:click="cartNumbers(products[8])">Add Cart</button>
                 </div>
             </div>
         </section>
@@ -146,6 +146,49 @@
                 ]
             }
         },
+        methods: {
+            cartNumbers(product) {
+                let productNumbers = localStorage.getItem("cartNumbers");
+                productNumbers = parseInt(productNumbers);
+                if(productNumbers){
+                    localStorage.setItem('cartNumbers',productNumbers+1);
+                }else{
+                    localStorage.setItem("cartNumbers" , 1);
+                }
+                this.setItems(product);
+                this.totalCost(product);
+            },
+            setItems(product){
+                let cartItems = localStorage.getItem('productsInCart');
+                cartItems = JSON.parse(cartItems);
+                if(cartItems != null){
+                    if(cartItems[product.tag] == undefined) {
+                        cartItems = {
+                            ...cartItems,
+                            [product.tag] : product
+                        }
+                    }
+                    cartItems[product.tag].inCart += 1;
+                }else {
+                    product.inCart = 1;
+                    cartItems = {
+                        [product.tag] : product
+                    }
+                }
+                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+            },
+            totalCost(product) {
+                let cartCost = localStorage.getItem('totalCost');
+                cartCost =  parseInt(cartCost);
+                if(!cartCost) {
+                    cartCost = product.price;
+                }
+                else{
+                    cartCost += product.price;
+                }
+                localStorage.setItem('totalCost',cartCost);
+            }
+        }
     }
 </script>
 

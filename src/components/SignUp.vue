@@ -1,5 +1,4 @@
 <template>
-
     <div id="signupDiv">
         <div class="signup-box">
             <div id="form1">
@@ -86,7 +85,6 @@
 <style>
     #signupDiv {
         background:#efefef;
-        /* background-image: url(../assets/images/signinbg3.webp); */
         font-family: 'roboto', sans-serif;
     }
     *{
