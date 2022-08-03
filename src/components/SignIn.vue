@@ -15,7 +15,8 @@
 </template>
 
 <script>
-   export default {
+    //import axios from 'axios'
+    export default {
         name:'SignIn',
         data(){
             return {
@@ -27,7 +28,26 @@
             }
         },
         methods : {
-            check() {
+
+            /*      // Using JSON Server Fake API
+            async check() {
+
+                let result  = await axios.get(
+                    `http://localhost:3000/users?email=${this.email}&password=${this.password}`
+                );
+                if(result.status == 200 && result.data.length > 0){
+                    if(result.data[0].email !== this.email || result.data[0].password !== this.password){
+                        alert("Not a Registered User Please Register");
+                        this.$router.push('/SignUp') ;
+                    }else{
+                        alert("SignIn Sucessfully !!");
+                        this.$router.push('/Home') ;
+                    }
+                }
+            },      */
+
+                    //Using LocalStorage
+            check(){
                 this.storedData = localStorage.getItem("UserCredentials");
                 this.storedData = JSON.parse(this.storedData);
                 this.storedData = this.storedData[this.email];
@@ -41,16 +61,16 @@
                 }
 
 
-                // this.stored_email = localStorage.getItem('email');
-                // this.stored_password = localStorage.getItem('password');
-                // if(this.email !== this.stored_email || this.password !== this.stored_password){
-                //     alert("Not Registered!! please register");
-                //     this.$router.push('SignUp') ;
-                // }
-                // else {
-                //     alert("signin Sucessfull !!");
-                //     this.$router.push('Home') ;
-                // }
+                this.stored_email = localStorage.getItem('email');
+                this.stored_password = localStorage.getItem('password');
+                if(this.email !== this.stored_email || this.password !== this.stored_password){
+                    alert("Not Registered!! please register");
+                    this.$router.push('SignUp') ;
+                }
+                else {
+                    alert("signin Sucessfull !!");
+                    this.$router.push('Home') ;
+                }
             },
             redirection() {
                 this.$router.push('SignUp') ;

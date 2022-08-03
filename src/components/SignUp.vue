@@ -29,6 +29,7 @@
 
 
 <script>
+    //import axios from 'axios'
     export default {
         name : 'signUp',
         data() {
@@ -44,7 +45,10 @@
             }
         },
         methods: {
-            signUp(){
+
+            /*  //Using JSON server Fake API
+
+            async signUp(){
                 if(!this.email.match(this.v_email)){
                     this.emailval=true
                 }
@@ -55,6 +59,30 @@
                     this.confpassval=true
                 }
                 else{
+                    let result = await axios.post("http://localhost:3000/users",{
+                        email:this.email,
+                        password:this.password
+                    });
+                    if(result.status == 201){
+                        localStorage.setItem("UserInfo",JSON.stringify(result.data));
+                        alert("Registered Sucessfully Now You Can SignIn");
+                        this.$router.push('/') ;
+                    }
+                }
+            },           */
+
+                        //Using localStorage 
+            signUp(){
+                if(!this.email.match(this.v_email)){
+                    this.emailval=true
+                }
+                else if(!this.password.match(this.v_password)){
+                    this.passval=true
+                }
+                else if(this.password!=this.confpass) {
+                    this.confpassval=true
+                }
+                else{    
                     let uCredentials = localStorage.getItem('UserCredentials');
                     uCredentials = JSON.parse(uCredentials);
                     if(uCredentials != null){
@@ -71,7 +99,7 @@
                     }
                     localStorage.setItem("UserCredentials", JSON.stringify(uCredentials));
                     alert("Registered Sucessfully Now you can login");
-                    this.$router.push('/') ;
+                    this.$router.push('/') ;    
                 }
             },
             redirection() {
