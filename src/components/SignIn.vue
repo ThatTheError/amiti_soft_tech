@@ -22,21 +22,35 @@
                 email:'',
                 password:'',
                 stored_email:'',
-                stored_password:''
+                stored_password:'',
+                storedData:''
             }
         },
         methods : {
             check() {
-                this.stored_email = localStorage.getItem('email');
-                this.stored_password = localStorage.getItem('password');
-                if(this.email !== this.stored_email || this.password !== this.stored_password){
+                this.storedData = localStorage.getItem("UserCredentials");
+                this.storedData = JSON.parse(this.storedData);
+                this.storedData = this.storedData[this.email];
+                if(this.email !== this.storedData.email || this.password !== this.storedData.password){
                     alert("Not Registered!! please register");
                     this.$router.push('SignUp') ;
                 }
                 else {
                     alert("signin Sucessfull !!");
-                    this.$router.push('Home') ;
+                    this.$router.push('/Home') ;
                 }
+
+
+                // this.stored_email = localStorage.getItem('email');
+                // this.stored_password = localStorage.getItem('password');
+                // if(this.email !== this.stored_email || this.password !== this.stored_password){
+                //     alert("Not Registered!! please register");
+                //     this.$router.push('SignUp') ;
+                // }
+                // else {
+                //     alert("signin Sucessfull !!");
+                //     this.$router.push('Home') ;
+                // }
             },
             redirection() {
                 this.$router.push('SignUp') ;
@@ -47,10 +61,6 @@
 </script>
 
 <style>
-    /* *{
-        padding: 0;
-        margin: 0;
-    } */
     #form label {
         display: flex;
         margin-top: 20px;
@@ -83,7 +93,12 @@
         font-weight: bolder;
         margin-top: 9px;
     }
-
+    .para-2 button {
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: medium;
+    }
     #form {
         width: 300px;
         padding-left: 29px;

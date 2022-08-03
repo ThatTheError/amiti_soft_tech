@@ -19,7 +19,7 @@
                 <label>Confirm Password :</label>
                 <span id="confpasswordspan" v-if="confpassval">Password Mismatch</span>
                 <input type="password" v-model="confpass" placeholder="Confirm Password" v-model.trim="confpass" id="confpass" required>
-                <button type="button" v-on:click="signUp" id="btn">signUp</button>
+                <button type="button" v-on:click="signUp" id="btn">SignUp</button>
             </div>
             <p class="para-1">By clicking the signup button you agree to our <a>Term's and Condition's</a> and <a>privacy policy</a></p>
         </div>
@@ -56,8 +56,21 @@
                     this.confpassval=true
                 }
                 else{
-                    localStorage.setItem("email",this.email);
-                    localStorage.setItem("password",this.password);
+                    let uCredentials = localStorage.getItem('UserCredentials');
+                    uCredentials = JSON.parse(uCredentials);
+                    if(uCredentials != null){
+                        if(uCredentials[this.email] == undefined) {
+                            uCredentials = {
+                                ...uCredentials,
+                                [this.email] : {email : this.email, password : this.password}
+                            }
+                        }
+                    }else {
+                        uCredentials = {
+                            [this.email] : {email : this.email, password : this.password}
+                        }
+                    }
+                    localStorage.setItem("UserCredentials", JSON.stringify(uCredentials));
                     alert("Registered Sucessfully Now you can login");
                     this.$router.push('/') ;
                 }
@@ -94,7 +107,7 @@
         height: 620px;
         background-color:white;
         margin: auto;
-        border-radius: 3px;
+        border-radius: 6px;
         background-color: black;
     }
     .para-2 {
@@ -102,7 +115,7 @@
         color: black;
         font-weight: bolder;
     }
-    .para-1 {
+    .para-1  {
         text-align: center;
         padding-top: 20px;
         font-size: 15px;
@@ -129,7 +142,7 @@
         outline: none;
     }
 
-    #btn  {
+    #form1 button  {
         margin-top: 34px;
         border: none;
         width: 100%;
@@ -139,8 +152,9 @@
         font-size:22px;
         background-color:aquamarine;
         cursor: pointer;
+        border-radius: 3px;
     }
-    #btn :hover {
+    #form1 button:hover {
         background-color: #fff;
         color:black;
     }
