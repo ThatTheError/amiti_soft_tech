@@ -40,7 +40,7 @@
 </script>
 
 <style>
-    .contact-form #from label {
+    .contact-form #form label {
         color: #019587;
         margin-top: 33px;
     }

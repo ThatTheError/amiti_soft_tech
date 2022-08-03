@@ -140,7 +140,7 @@
         text-align: left;
         margin-bottom: 10px;
         font-weight: 100;
-        color: 009688;
+        color: #009688;
     }
     .feature-desc {
         display: flex;

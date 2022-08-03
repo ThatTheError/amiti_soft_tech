@@ -5,16 +5,14 @@
             <h3>Indian<span>HairLine</span></h3>
 
             <p class="footer-links">
-                <a href="#">Home</a>
+                <a v-on:click="$router.push('/Home')">Home</a>
                 |
-                <a href="#">Services</a>
+                <a v-on:click="$router.push('/Contact')">Contact</a>
                 |
-                <a href="#">Contact</a>
-                |
-                <a href="#">Products</a>
+                <a v-on:click="$router.push('/Products')">Products</a>
             </p>
 
-            <p class="footer-company-name">Copyright © 2021 <strong>Indian HairLine</strong> All rights reserved</p>
+            <p class="footer-company-name">Copyright © 2022 <strong>Indian HairLine</strong> All rights reserved</p>
         </div>
 
         <div class="footer-center">
@@ -139,6 +137,7 @@ footer {
 .footer-distributed .footer-links {
     color: #ffffff;
     margin: 20px 0 12px;
+    cursor: pointer;
 }
 
 .footer-distributed .footer-links a {
