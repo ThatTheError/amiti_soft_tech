@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp"
 import Products from "./components/Products"
 import Contact from "./components/Contact"
 import Services from "./components/Services"
+import Carts from "./components/Carts"
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         name:'Services',
         path:'/Services',
         component:Services
+    },
+    {
+        name:'Carts',
+        path:'/Carts',
+        component:Carts
     }
 ];
 

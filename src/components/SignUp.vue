@@ -29,7 +29,7 @@
 
 
 <script>
-    //import axios from 'axios'
+    import axios from 'axios'
     export default {
         name : 'signUp',
         data() {
@@ -46,7 +46,7 @@
         },
         methods: {
 
-            /*  //Using JSON server Fake API
+              //Using JSON server Fake API
 
             async signUp(){
                 if(!this.email.match(this.v_email)){
@@ -69,10 +69,10 @@
                         this.$router.push('/') ;
                     }
                 }
-            },           */
+            },           
 
                         //Using localStorage 
-            signUp(){
+            /*signUp(){
                 if(!this.email.match(this.v_email)){
                     this.emailval=true
                 }
@@ -101,7 +101,7 @@
                     alert("Registered Sucessfully Now you can login");
                     this.$router.push('/') ;    
                 }
-            },
+            },*/
             redirection() {
                 this.$router.push('/') ;
             }

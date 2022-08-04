@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    //import axios from 'axios'
+    import axios from 'axios'
     export default {
         name:'SignIn',
         data(){
@@ -29,7 +29,7 @@
         },
         methods : {
 
-            /*      // Using JSON Server Fake API
+                  // Using JSON Server Fake API
             async check() {
 
                 let result  = await axios.get(
@@ -44,10 +44,10 @@
                         this.$router.push('/Home') ;
                     }
                 }
-            },      */
+            },      
 
                     //Using LocalStorage
-            check(){
+            /*check(){
                 this.storedData = localStorage.getItem("UserCredentials");
                 this.storedData = JSON.parse(this.storedData);
                 this.storedData = this.storedData[this.email];
@@ -58,10 +58,10 @@
                 else {
                     alert("signin Sucessfull !!");
                     this.$router.push('/Home') ;
-                }
+                }*/
 
 
-                this.stored_email = localStorage.getItem('email');
+                /*this.stored_email = localStorage.getItem('email');
                 this.stored_password = localStorage.getItem('password');
                 if(this.email !== this.stored_email || this.password !== this.stored_password){
                     alert("Not Registered!! please register");
@@ -71,7 +71,7 @@
                     alert("signin Sucessfull !!");
                     this.$router.push('Home') ;
                 }
-            },
+            },*/
             redirection() {
                 this.$router.push('SignUp') ;
             }

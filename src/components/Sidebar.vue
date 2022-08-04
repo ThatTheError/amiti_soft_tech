@@ -3,11 +3,11 @@
         <nav>
             <ul>
                 <li><button v-on:click="this.$router.push('/Home')">Home   </button><i class="fa fa-home" aria-hidden="true"></i></li>
-                <li><button v-on:click="this.$router.push('/')">Carts   </button><i class="fa fa-shopping-cart" aria-hidden="true"></i></li>
+                <li><button v-on:click="this.$router.push('/Carts')">Carts   </button><i class="fa fa-shopping-cart" aria-hidden="true"></i></li>
                 <li><button v-on:click="this.$router.push('/')">Testimonials   </button><i class="fa fa-plus-circle" aria-hidden="true"></i></li>
                 <li><button v-on:click="this.$router.push('/Products')">Products   </button><i class="fa fa-product-hunt" aria-hidden="true"></i></li>
                 <li><button v-on:click="this.$router.push('/Contacts')">Contact   </button><i class="fa fa-phone-square" aria-hidden="true"></i></li>
-                <li><button v-on:click="this.$router.push('/')">Signin   </button><i class="fa fa-sign-in" aria-hidden="true"></i></li>
+                <li><button v-on:click="this.$router.push('/')">LogOut   </button><i class="fa fa-sign-out" aria-hidden="true"></i></li>
             </ul>
         </nav>
     </div>

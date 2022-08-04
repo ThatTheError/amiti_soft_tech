@@ -10,11 +10,11 @@
                 <div class="contact-form">
                     <div id="form">
                         <label for="fname">First Name</label>
-                        <input type="text" name="firstname" placeholder="your name.....">
+                        <input type="text" name="firstname" placeholder="Enter Your FirstName">
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lastname" placeholder="your last name.....">
+                        <input type="text" name="lastname" placeholder="Enter Your LastName">
                         <label for="email">Email</label>
-                        <input type="text" name="email" placeholder="your email.....">
+                        <input type="text" name="email" placeholder="Enter Your Email Address">
                         <input type="submit" value="submit">
                     </div>
                 </div>
@@ -35,7 +35,10 @@
     import Footer from './Footer.vue'
     export default {
     name: "Contact-comp",
-    components: { Sidebar,Footer }
+    components: { 
+        Sidebar,
+        Footer 
+    }
 }
 </script>
 
