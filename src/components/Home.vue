@@ -6,7 +6,7 @@
             <p>All types of Haircare Product's , Hair Care , Spa , Manicures & Pedicures , Facial Treatments , Waxing</p>
             <div class="banner-btn">
                 <button v-on:click="$router.push('/Products')">FindOut</button>
-                <button v-on:click="$router.push('/Contacts')">ReadMore..</button>
+                <button v-on:click="$router.push('/Testimonials')">ReadMore..</button>
             </div>
         </div>
         <Sidebar />

@@ -6,6 +6,7 @@ import Products from "./components/Products"
 import Contact from "./components/Contact"
 import Services from "./components/Services"
 import Carts from "./components/Carts"
+import Testimonials from "./components/Testimonials"
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         name:'Carts',
         path:'/Carts',
         component:Carts
+    },
+    {
+        name:'Testimonials',
+        path:'/Testimonials',
+        component:Testimonials
     }
 ];
 
