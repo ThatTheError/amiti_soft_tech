@@ -68,6 +68,7 @@
 
 
 <script>
+    //import axios from 'axios'
     import Sidebar from './Sidebar.vue'
     import Footer from './Footer.vue'
     export default {
@@ -148,6 +149,11 @@
         },
         methods: {
             cartNumbers(product) {
+
+                // let n = axios.get(
+                //     `http://localhost:3000/noOfCarts{n}`
+                // );
+                // console.log(n);
                 let productNumbers = localStorage.getItem("cartNumbers");
                 productNumbers = parseInt(productNumbers);
                 if(productNumbers){

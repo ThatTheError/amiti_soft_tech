@@ -9,6 +9,16 @@
       "email": "ram@gmail.com",
       "password": "Ram@prasad1234",
       "id": 6
+    },
+    {
+      "email": "maleswaripatro434@gmail.com",
+      "password": "Mali@patro1234",
+      "id": 7
+    },
+    {
+      "email": "ssm@nist.edu",
+      "password": "Siba@1234",
+      "id": 8
     }
   ]
 }

@@ -43,6 +43,9 @@
                         alert("SignIn Sucessfully !!");
                         this.$router.push('/Home') ;
                     }
+                }else{
+                    alert("Not a Registered User Please Register");
+                    this.$router.push('/SignUp') ;
                 }
             },      
 

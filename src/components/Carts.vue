@@ -10,18 +10,16 @@
                 <tr id="cart-tr">
                     <th colspan="2">ProductName</th><th>Quantity</th><th>Price</th><th>Remove</th>
                 </tr>
-                <tbody>
-                    <tr v-for="data in this.cartDetails" :key="data">
-                        <td style="padding: 0px;margin:0px;background-color: white;"><img :src="require(`@/assets/products/p${data.pno}.jpg`)" alt class="icon" /></td>
-                        <td> {{ data.name }} </td>
-                        <td> {{ data.inCart }} </td>
-                        <td> {{ data.price }} </td>
-                        <td style="background-color: white;color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td colspan="5">Total = ${{ this.total }}</td>
-                    </tr>
-                </tbody>
+                <tr v-for="cartItem in cartDetails" :key="cartItem.name">
+                    <td style="padding: 0px;margin:0px;background-color: white;"><img :src="require(`@/assets/products/p${cartItem.pno}.jpg`)" alt class="icon" /></td>
+                    <td> {{ cartItem.name }} </td>
+                    <td> {{ cartItem.inCart }} </td>
+                    <td> {{ cartItem.price }} </td>
+                    <td style="background-color: white;color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true" @click="removeItem(cartItem)"></i></td>
+                </tr>
+                <tr>
+                    <td colspan="5">Total = ${{ this.total }}</td>
+                </tr>
             </table>
         </div>
     </section>
@@ -40,7 +38,7 @@
         data() {
             return{
                 cartDetails:'',
-                total:''
+                total:'',
             }
         },
         mounted(){
@@ -50,10 +48,24 @@
             displayCart(){
                 this.cartDetails = localStorage.getItem('productsInCart');
                 this.cartDetails = JSON.parse(this.cartDetails);
-                this.cartDetails = Object.values(this.cartDetails);
+                //this.cartDetails = Object.values(this.cartDetails);
                 this.total = localStorage.getItem('totalCost');
             },
-            removeItem(){
+            removeItem(key){
+                let incart = key.inCart;
+                //console.log('incart = ',incart);
+                let cost = key.price*incart;
+                //console.log('cost = ',cost);
+                delete this.cartDetails[key.name];
+                let cartNo = JSON.parse(localStorage.getItem('cartNumbers'));
+                //console.log('no of carts =  ',cartNo-incart);
+                localStorage.setItem('cartNumbers',JSON.stringify(cartNo-incart));
+                let tcost = JSON.parse(localStorage.getItem('totalCost'));
+                //console.log("total cost before = ",tcost);
+                //console.log("totalcost after = ",tcost-cost);
+                localStorage.setItem('totalCost',JSON.stringify(tcost-cost));
+                localStorage.setItem('productsInCart',JSON.stringify(this.cartDetails));
+                this.displayCart();
             }
         }
     }
