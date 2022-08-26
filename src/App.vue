@@ -1,35 +1,11 @@
 <template>
-  <!-- <Home /> -->
-  <!-- <SignUp /> -->
-  <!-- <SignIn />
-  <SignUp />
-  <Home /> -->
-  <!-- <Contact />
-  <Home />
-  <Products /> -->
-  
-  <!-- <router-link to="/">Home</router-link>
-  <router-link to="/SignIn">SignIn</router-link>
-  <router-link to="/SignUp">SignUp</router-link>
-  <router-link to="/Contact">SignUp</router-link>-->
   <router-view></router-view> 
 </template>
 
 <script>
-// // import SignUp from "./components/SignUp.vue"
-// import SignIn from "./components/SignIn.vue"
-//  import Home from "./components/Home.vue"
-// import Contact from "./components/Contact.vue"
-// import Products from "./components/Products.vue"
-// import SignUp from "./components/SignUp.vue"
-export default {
-  name: 'App',
-//   components : {
-//     Home,
-//     Contact,
-//     Products
-// }
-}
+  export default {
+    name: 'App'
+  }
 </script>
 
 <style>

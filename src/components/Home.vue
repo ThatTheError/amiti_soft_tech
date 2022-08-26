@@ -2,7 +2,7 @@
     <section id="banner">
         <img src="../assets/images/logo.png" class="logo">
         <div id="banner-text">
-            <h1>India HairLine</h1>
+            <h1>Indian HairLine</h1>
             <p>All types of Haircare Product's , Hair Care , Spa , Manicures & Pedicures , Facial Treatments , Waxing</p>
             <div class="banner-btn">
                 <button v-on:click="$router.push('/Products')">FindOut</button>

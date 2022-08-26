@@ -7,6 +7,8 @@ import Contact from "./components/Contact"
 import Services from "./components/Services"
 import Carts from "./components/Carts"
 import Testimonials from "./components/Testimonials"
+import Admin from "./components/Admin"
+import AddProduct from "./components/AddProduct"
 
 const routes = [
     {
@@ -48,6 +50,16 @@ const routes = [
         name:'Testimonials',
         path:'/Testimonials',
         component:Testimonials
+    },
+    {
+        name:'Admin',
+        path:'/Admin',
+        component:Admin
+    },
+    {
+        name:'AddProduct',
+        path:'/AddProduct',
+        component:AddProduct
     }
 ];
 

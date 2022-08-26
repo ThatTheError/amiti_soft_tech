@@ -68,7 +68,7 @@
 
 
 <script>
-    //import axios from 'axios'
+    import axios from 'axios'
     import Sidebar from './Sidebar.vue'
     import Footer from './Footer.vue'
     export default {
@@ -144,56 +144,76 @@
                     inCart: 0,
                     pno: 9
                 }
-                ]
+                ],
+                pro:''
             }
         },
         methods: {
-            cartNumbers(product) {
 
-                // let n = axios.get(
-                //     `http://localhost:3000/noOfCarts{n}`
-                // );
-                // console.log(n);
-                let productNumbers = localStorage.getItem("cartNumbers");
-                productNumbers = parseInt(productNumbers);
-                if(productNumbers){
-                    localStorage.setItem('cartNumbers',productNumbers+1);
-                }else{
-                    localStorage.setItem("cartNumbers" , 1);
+            async cartNumbers(product) 
+            {
+                console.log(product)
+                var uEmail = JSON.parse(localStorage.getItem("CurrentUser"));
+                uEmail = uEmail.uEmail;
+                console.log(uEmail);
+                var pId = product.pno;
+                var data = {
+                    "uId" : "",
+                    "pId" : ""+pId,
+                    "pQty" : ""+1
                 }
-                this.setItems(product);
-                this.totalCost(product);
-            },
-            setItems(product){
-                let cartItems = localStorage.getItem('productsInCart');
-                cartItems = JSON.parse(cartItems);
-                if(cartItems != null){
-                    if(cartItems[product.tag] == undefined) {
-                        cartItems = {
-                            ...cartItems,
-                            [product.tag] : product
-                        }
-                    }
-                    cartItems[product.tag].inCart += 1;
-                }else {
-                    product.inCart = 1;
-                    cartItems = {
-                        [product.tag] : product
-                    }
-                }
-                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-            },
-            totalCost(product) {
-                let cartCost = localStorage.getItem('totalCost');
-                cartCost =  parseInt(cartCost);
-                if(!cartCost) {
-                    cartCost = product.price;
-                }
-                else{
-                    cartCost += product.price;
-                }
-                localStorage.setItem('totalCost',cartCost);
+                this.pro = await axios.post("http://localhost:8282/spproducts?uEmail="+uEmail+"",data);
+                //this.pro = await axios.post("http://localhost:8282/spproducts?uEmail="+uEmail+"&pId="+pId);
             }
+            //     let productNumbers = localStorage.getItem("cartNumbers");
+            //     productNumbers = parseInt(productNumbers);
+            //     if(productNumbers){
+            //         localStorage.setItem('cartNumbers',productNumbers+1);
+            //     }else{
+            //         localStorage.setItem("cartNumbers" , 1);
+            //     }
+            //     this.setItems(product);
+            //     this.totalCost(product);
+            // },
+            // setItems(product){
+            //     let cartItems = localStorage.getItem('productsInCart');
+            //     cartItems = JSON.parse(cartItems);
+            //     if(cartItems != null){
+            //         if(cartItems[product.tag] == undefined) {
+            //             cartItems = {
+            //                 ...cartItems,
+            //                 [product.tag] : product
+            //             }
+            //         }
+            //         cartItems[product.tag].inCart += 1;
+            //     }else {
+            //         product.inCart = 1;
+            //         cartItems = {
+            //             [product.tag] : product
+            //         }
+            //     }
+            //     localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+            //     //this.saveToDatabase(cartItems)
+            // },
+            // totalCost(product) {
+            //     let cartCost = localStorage.getItem('totalCost');
+            //     cartCost =  parseInt(cartCost);
+            //     if(!cartCost) {
+            //         cartCost = product.price;
+            //     }
+            //     else{
+            //         cartCost += product.price;
+            //     }
+            //     localStorage.setItem('totalCost',cartCost);
+            // },
+            // saveToDatabase(product){
+            //     var pro = {
+            //         "Product_Number" : ""+product.pno,
+            //         "Product_Name" : ""+product.name,
+            //         "Product_Quantity" : ""+product.inCart,
+            //         "Product_Price" : ""+product.price
+            //     }
+            // }
         }
     }
 </script>

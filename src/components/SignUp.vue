@@ -48,7 +48,7 @@
 
               //Using JSON server Fake API
 
-            async signUp(){
+            /*async signUp(){
                 if(!this.email.match(this.v_email)){
                     this.emailval=true
                 }
@@ -67,6 +67,36 @@
                         localStorage.setItem("UserInfo",JSON.stringify(result.data));
                         alert("Registered Sucessfully Now You Can SignIn");
                         this.$router.push('/') ;
+                    }
+                }
+            },*/
+
+
+            // spring boot api call
+            async signUp(){
+                if(!this.email.match(this.v_email)){
+                    this.emailval=true
+                }
+                else if(!this.password.match(this.v_password)){
+                    this.passval=true
+                }
+                else if(this.password!=this.confpass) {
+                    this.confpassval=true
+                }
+                else{
+                    var data = {
+                        "uEmail" : ""+this.email,
+                        "uPassword" : ""+this.password,
+                        "uConfPassword" : ""+this.confpass
+                    };
+                    let result = await axios.post("http://localhost:8282/susers",data);
+                    if(result.status == 201){
+                        //localStorage.setItem("UserInfo",JSON.stringify(result.data));
+                        alert("Registered Sucessfully Now You Can SignIn");
+                        this.$router.push('/') ;
+                    }
+                    else if(result.status == 208){
+                        alert("This email address is already being used!!");
                     }
                 }
             },           

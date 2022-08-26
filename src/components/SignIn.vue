@@ -30,7 +30,7 @@
         methods : {
 
                   // Using JSON Server Fake API
-            async check() {
+            /*async check() {
 
                 let result  = await axios.get(
                     `http://localhost:3000/users?email=${this.email}&password=${this.password}`
@@ -47,7 +47,29 @@
                     alert("Not a Registered User Please Register");
                     this.$router.push('/SignUp') ;
                 }
-            },      
+            }, */
+            
+            // springboot api call
+            async check() {
+
+                var data = {
+                        "uEmail" : ""+this.email,
+                        "uPassword" : ""+this.password,
+                        "uConfPassword" : ""+this.password
+                };
+                let result = await axios.post("http://localhost:8282/lusers",data);
+                console.log(result);
+                if(result.data == 0){
+                    alert("Not a Registered User Please Register!!");
+                    this.$router.push('/SignUp');
+                }
+                else{
+                    localStorage.setItem("CurrentUser",JSON.stringify(data));
+                    this.$router.push('/Home') ;
+                }
+                
+            },
+
 
                     //Using LocalStorage
             /*check(){
