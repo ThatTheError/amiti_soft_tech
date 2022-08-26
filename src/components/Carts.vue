@@ -11,10 +11,10 @@
                     <th colspan="2">ProductName</th><th>Quantity</th><th>Price</th><th>Remove</th>
                 </tr>
                 <tr v-for="cartItem in cartDetails" :key="cartItem.pNo">
-                    <td style="padding: 0px;margin:0px;background-color: white;"><img :src="require(`@/assets/products/p${cartItem.pNo}.jpg`)" alt class="icon" /></td>
-                    <td> {{ cartItem.pName }} </td>
-                    <td> {{ cartItem.pQty }} </td>
-                    <td> {{ cartItem.pPrice }} </td>
+                    <td style="padding: 0px;margin:0px;background-color: white;"><img :src="require(`@/assets/products/p${cartItem[0]}.jpg`)" alt class="icon" /></td>
+                    <td> {{ cartItem[1] }} </td>
+                    <td> {{ cartItem[3] }} </td>
+                    <td> {{ cartItem[2] }} </td>
                     <td style="background-color: white;color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true" @click="removeItem(cartItem)"></i></td>
                 </tr>
                 <tr>
@@ -51,7 +51,6 @@
                 uEmail = uEmail.uEmail;
                 var cart = await axios.get("http://localhost:8282/gproducts?uEmail="+uEmail);
                 this.cartDetails = cart.data;
-                console.log(this.cartDetails);
 
                 // this.cartDetails = localStorage.getItem('productsInCart');
                 // this.cartDetails = JSON.parse(this.cartDetails);
