@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.*;
+
 import com.gopal.barbershop.entities.Product;
 import com.gopal.barbershop.entities.UserEntity;
 import com.gopal.barbershop.entities.User_Product;
@@ -75,7 +77,7 @@ public class Controller
 
     }
 
-    // Get All Products
+    // Get All Products of a particular user
     @CrossOrigin(origins = "http://localhost:8081/")
     @GetMapping("gproducts")
     public List<Object[]> getAllProduct(@RequestParam String uEmail)
@@ -102,13 +104,20 @@ public class Controller
         int uId = userServices.finduserid(uEmail);
         boolean b =userProductServices.isExistingProductOfParticularUser(uId, up.getpId());
         if(b){
-            System.out.println("b is true"+b);
             userProductServices.increaseQty(up.getpId());
         }
         else{
-            System.out.println("b is false"+b);
             up.setuId(uId);
             userProductServices.addUserProduct(up);
         }
     }
+
+    // to get all the products from the product table
+    @CrossOrigin(origins = "http://localhost:8081/")
+    @GetMapping("getallproducts")
+    public List<Product> getAllPros()
+    {
+        return(productServices.getAllProducts());
+    }
+
 }

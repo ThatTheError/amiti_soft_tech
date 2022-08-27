@@ -122,8 +122,9 @@
         padding: 0;
     }
     #cart-table tr td {
-        font-family:monospace;
-        font-size: 15px;
+        font-weight: bolder;
+        font-family: monospace;
+        font-size: 17px;
         color: white;
         background-color: gray;
         border: 3px solid #019587;

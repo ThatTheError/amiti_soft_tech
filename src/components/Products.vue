@@ -5,7 +5,7 @@
                 <p>PRODUCTS</p>
                 <h1>Shop Our Best Products</h1>
             </div>
-            <div class="container">
+            <!-- <div class="container">
                 <div class="image">
                     <img src="../assets/products/p1.jpg" alt="Hair Serum">
                     <h3>Hair Serum</h3>
@@ -61,6 +61,16 @@
                     <h3>$19.0</h3>
                     <button class="add-cart cart9" v-on:click="cartNumbers(products[8])">Add Cart</button>
                 </div>
+            </div> -->
+            <div class="container">
+                <div class="image" v-for="product in productss" :key="product.pNo" >
+                    <img :src="require(`@/assets/products/p${product.pNo}.jpg`)" alt class="icon" />
+                    <h3>{{product.pName}}</h3>
+                    <h3>$ {{product.pPrice}}</h3>
+                    <i class="add-cart" @click="cartNumbers(product)">Add Cart</i>
+                    <!-- <button><i class="add-cart" @click="cartNumbers(product)">Add Cart</i></button> -->
+                    <!-- <button class="add-cart cart1" @click="cartNumbers(product)">Add Cart</button> -->
+                </div>
             </div>
         </section>
         <Footer />
@@ -79,84 +89,92 @@
         },
         data() {
             return {
-                products : [
-                {
-                    name: 'Hair Serum',
-                    tag: 'Hair Serum',
-                    price: 17,
-                    inCart: 0,
-                    pno: 1
-                },
-                {
-                    name: 'Dry Shampoo',
-                    tag: 'Dry Shampoo',
-                    price: 14,
-                    inCart: 0,
-                    pno: 2
-                },
-                {
-                    name: 'Hair Color',
-                    tag: 'Hair Color',
-                    price: 9,
-                    inCart: 0,
-                    pno: 3
+                // products : [
+                // {
+                //     name: 'Hair Serum',
+                //     tag: 'Hair Serum',
+                //     price: 17,
+                //     inCart: 0,
+                //     pno: 1
+                // },
+                // {
+                //     name: 'Dry Shampoo',
+                //     tag: 'Dry Shampoo',
+                //     price: 14,
+                //     inCart: 0,
+                //     pno: 2
+                // },
+                // {
+                //     name: 'Hair Color',
+                //     tag: 'Hair Color',
+                //     price: 9,
+                //     inCart: 0,
+                //     pno: 3
                     
-                },
-                {
-                    name: 'Hair Mask',
-                    tag: 'Hair Mask',
-                    price: 11,
-                    inCart: 0,
-                    pno: 4
-                },
-                {
-                    name: 'Hair Cream',
-                    tag: 'Hair Cream',
-                    price: 22,
-                    inCart: 0,
-                    pno: 5
-                },
-                {
-                    name: 'Hair Wax',
-                    tag: 'Hair Wax',
-                    price: 24,
-                    inCart: 0,
-                    pno: 6
-                },
-                {
-                    name: 'Hair Gel',
-                    tag: 'Hair Gel',
-                    price: 7,
-                    inCart: 0,
-                    pno: 7
-                },
-                {
-                    name: 'Hair Spray',
-                    tag: 'Hair Spray',
-                    price: 27,
-                    inCart: 0,
-                    pno: 8
-                },
-                {
-                    name: 'Beardo Oil',
-                    tag: 'Beardo Oil',
-                    price: 19,
-                    inCart: 0,
-                    pno: 9
-                }
-                ],
-                pro:''
+                // },
+                // {
+                //     name: 'Hair Mask',
+                //     tag: 'Hair Mask',
+                //     price: 11,
+                //     inCart: 0,
+                //     pno: 4
+                // },
+                // {
+                //     name: 'Hair Cream',
+                //     tag: 'Hair Cream',
+                //     price: 22,
+                //     inCart: 0,
+                //     pno: 5
+                // },
+                // {
+                //     name: 'Hair Wax',
+                //     tag: 'Hair Wax',
+                //     price: 24,
+                //     inCart: 0,
+                //     pno: 6
+                // },
+                // {
+                //     name: 'Hair Gel',
+                //     tag: 'Hair Gel',
+                //     price: 7,
+                //     inCart: 0,
+                //     pno: 7
+                // },
+                // {
+                //     name: 'Hair Spray',
+                //     tag: 'Hair Spray',
+                //     price: 27,
+                //     inCart: 0,
+                //     pno: 8
+                // },
+                // {
+                //     name: 'Beardo Oil',
+                //     tag: 'Beardo Oil',
+                //     price: 19,
+                //     inCart: 0,
+                //     pno: 9
+                // }
+                // ],
+                pro:'',
+                productss:''
             }
         },
+        created(){
+            this.scheduleProducts();
+        },
         methods: {
-
+            async scheduleProducts()
+            {
+                var pro = await axios.get("http://localhost:8282/getallproducts");
+                this.productss = pro.data;
+            },
             async cartNumbers(product) 
             {
                 console.log(product)
                 var uEmail = JSON.parse(localStorage.getItem("CurrentUser"));
                 uEmail = uEmail.uEmail;
                 console.log(uEmail);
-                var pId = product.pno;
+                var pId = product.pNo;
                 var data = {
                     "uId" : "",
                     "pId" : ""+pId,
@@ -264,7 +282,7 @@
     }
     .image {
         width: 300px;
-        height: 310px;
+        height: 340px;
         margin: 60px 100px;
         position: relative;
         overflow: hidden;
@@ -275,18 +293,18 @@
     .image img {
         margin: auto;
         width: 100%;
-        height: 70%;
+        height: 65%;
         background-color: #009688;
     }
-    .image button{
-        height: 31px;
+    .image i{
+        height: 25px;
         font-family: cursive;
         background-color: #fff;
         color: #019587;
         text-decoration: none;
         text-align: center;
         font-weight: bolder;
-        margin: 0 80px;
+        margin: 11px 80px;
         padding: 4px 31px;
         display: inline-block;
         border: 3px solid white;
