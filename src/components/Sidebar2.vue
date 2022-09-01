@@ -4,7 +4,7 @@
             <ul>
                 <li><button v-on:click="this.$router.push('/Admin')">Home   </button><i class="fa fa-home" aria-hidden="true"></i></li>
                 <li><button v-on:click="this.$router.push('/AddProduct')">Add Products   </button><i class="fa fa-home" aria-hidden="true"></i></li>
-                <li><button v-on:click="this.$router.push('')">Products   </button><i class="fa fa-product-hunt" aria-hidden="true"></i></li>
+                <li><button v-on:click="this.$router.push('/AdminProduct')">Products   </button><i class="fa fa-product-hunt" aria-hidden="true"></i></li>
                 <li><button v-on:click="confirmUser()">LogOut   </button><i class="fa fa-sign-out" aria-hidden="true"></i></li>
             </ul>
         </nav>

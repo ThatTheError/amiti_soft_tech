@@ -1,11 +1,13 @@
 package com.gopal.barbershop.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Product {
     @Id
+    @GeneratedValue
     @Column(name = "Product_Number")
     private int pNo;
     @Column(name = "Product_Name")
@@ -14,7 +16,10 @@ public class Product {
     private int pQty;
     @Column(name = "Product_Price")
     private int pPrice;
+    @Column(name = "Product_Image")
+    private String pImg;
 
+    
     public int getpNo() {
         return pNo;
     }
@@ -39,17 +44,25 @@ public class Product {
     public void setpPrice(int pPrice) {
         this.pPrice = pPrice;
     }
-    public Product(int pNo, String pName, int pQty, int pPrice) {
+    public String getpImg() {
+        return pImg;
+    }
+    public void setpImg(String pImg) {
+        this.pImg = pImg;
+    }
+    public Product() {
+    }
+    public Product(int pNo, String pName, int pQty, int pPrice, String pImg) {
         this.pNo = pNo;
         this.pName = pName;
         this.pQty = pQty;
         this.pPrice = pPrice;
-    }
-    public Product() {
+        this.pImg = pImg;
     }
     @Override
     public String toString() {
-        return "Product [pName=" + pName + ", pNo=" + pNo + ", pPrice=" + pPrice + ", pQty=" + pQty + "]";
-    }
+        return "Product [pImg=" + pImg + ", pName=" + pName + ", pNo=" + pNo + ", pPrice=" + pPrice + ", pQty=" + pQty
+                + "]";
+    } 
     
 }

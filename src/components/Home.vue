@@ -3,7 +3,7 @@
         <img src="../assets/images/logo.png" class="logo">
         <div id="banner-text">
             <h1>Indian HairLine</h1>
-            <p>All types of Haircare Product's , Hair Care , Spa , Manicures & Pedicures , Facial Treatments , Waxing</p>
+            <p>First ever Unisex saloon chain of India , All types of haircare product's , spa , manicures & pedicures , facial treatments</p>
             <div class="banner-btn">
                 <button v-on:click="$router.push('/Products')">FindOut</button>
                 <button v-on:click="$router.push('/Testimonials')">ReadMore..</button>
@@ -37,6 +37,7 @@
         margin: 0;
     }
     #banner {
+        margin-top: -60px;
         background-image: linear-gradient(rgba(0,0,0,0.5),#009688) ,url('../assets/images/banner.jpg');
         background-size: cover;
         background-position: center;

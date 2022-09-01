@@ -1,10 +1,10 @@
 <template>
     <Sidebar />
-    <section id="contact">
-        <div class="title-text">
+    <div class="title-text">
             <p>Contact</p>
             <h1>Connect With Us</h1>
-        </div>
+    </div>
+    <section id="contact"> 
         <section class="contact">
             <div class="container">
                 <div class="contact-form">
@@ -77,12 +77,6 @@
         font-size: 50px;
         color: #009688;
     }
-    *{
-        margin: 0 0;
-        padding: 0 0;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    
     #contact {
         width: 100%;
         padding: 70px 0;
@@ -117,11 +111,6 @@
     .title-text h1 {
         font-size: 50px;
     }
-    .container{
-        width: 80%;
-        margin: 0 auto;
-        padding: 1%;
-    }
     .text-center{
         text-align: center;
     }
@@ -133,7 +122,6 @@
         background-color: #ececec;
         padding: 4% 0;
     }
-
     .contact-form{
         margin-right: 50px;
         width: 500px;

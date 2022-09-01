@@ -1,20 +1,20 @@
 <template>
     <Sidebar2 />
-    <section id="contact">
-        <div class="title-text">
+    <div class="title-text">
             <p>Add Product</p>
             <h1>Product Details</h1>
-        </div>
+    </div>
+    <section id="contact">
         <section class="contact">
             <div class="container">
                 <div class="contact-form2">
                     <div id="form2">
-                        <label>Product Number</label>
-                        <input type="number" name="pno" v-model="pno" placeholder="Enter New Product Number">
                         <label>Product Name</label>
                         <input type="text" name="proname" v-model="pname" placeholder="Enter New Product Name">
                         <label>Product Price</label>
                         <input type="number" name="proprice" v-model="pprice" placeholder="Enter Your Email Address">
+                        <label>Product Image</label>
+                        <input type="file" @change="pFile" placeholder="Choose File">
                         <input type="button" v-on:click="addItem" value="Add Item">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
 <script>
     import axios from 'axios'
     import Sidebar2 from './Sidebar2.vue'
-    import Footer from './Footer.vue'
+    import Footer from './AdminFooter.vue'
     export default {
     name: "Add-Product",
     components: {
@@ -37,24 +37,27 @@
     },
     data(){
         return{
-            pno:'',
             pname:'',
-            pprice:''
+            pprice:'',
+            pimg:'',
         }
     },
     methods : {
         async addItem(){
             var data = {
-                "pNo" : ""+this.pno,
                 "pName" : ""+this.pname,
                 "pQty" : ""+0,
-                "pPrice" : ""+this.pprice
+                "pPrice" : ""+this.pprice,
+                "pImg" : ""+this.pimg
             }
             console.log(data);
-            let result = await axios.post("http://localhost:8282/aproducts",data);
-            if(result == "added"){
-                alert("New Product Added");
-            }
+            await axios.post("http://localhost:8282/aproducts",data);
+            alert("New Product Added");
+            this.pno="",this.pname="",this.pprice = "",this.pimg= "";
+            this.$router.push('/AdminProduct');
+        },
+        pFile(event){
+            this.pimg = event.target.files[0].name;
         }
     }
 }
@@ -69,7 +72,7 @@
     }
     .title-text {
         text-align: center;
-        padding-bottom: 70px;
+        padding-bottom: 0px;
     }
     .title-text p {
         margin: auto;
@@ -97,15 +100,15 @@
         font-size: 50px;
         color: #009688;
     }
-    *{
+    /* *{
         margin: 0 0;
         padding: 0 0;
         font-family: Arial, Helvetica, sans-serif;
-    }
+    } */
     
     #contact {
         width: 100%;
-        padding: 70px 0;
+        padding: 0px 0;
         background: #efefef;
     }
     .title-text {

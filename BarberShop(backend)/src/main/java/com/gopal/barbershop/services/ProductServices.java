@@ -42,9 +42,28 @@ public class ProductServices {
         this.addProduct(product);
     }
 
+    // to get cart details of a particular user
     public List<Object[]> getCartData(int uId)
     {
         return(productDao.getCartData(uId));
+    }
+
+    //to get total price of a particular user
+    public Object getTotalPrice(int uId)
+    {
+        return(productDao.getTotal(uId));
+    }
+
+    // to delete product of a particular user
+    public void deleteParticularUserProducts(int uId,int pId)
+    {
+        productDao.deletePUProducts(uId,pId);
+    }
+
+    //to delete a product(admin use)
+    public void deleteProduct(Product product)
+    {
+        productDao.delete(product);
     }
 
 }

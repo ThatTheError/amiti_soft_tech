@@ -58,10 +58,14 @@ public class Controller
     {
         if(userServices.isExistingUser(user))
         {
+            if(user.getuEmail().equals("admin@barbershop.com") && user.getuPassword().equals("Admin@bs1234")){
+                return 3;
+            }
             return 1;
         }
         return 0;
     }
+
 
     // Add Products
     @CrossOrigin(origins = "http://localhost:8081/")
@@ -77,6 +81,17 @@ public class Controller
 
     }
 
+
+    // Delete Products
+    @CrossOrigin(origins = "http://localhost:8081/")
+    @PostMapping("dproducts")
+    public void deleteProduct(@RequestBody Product product)
+    {
+        productServices.deleteProduct(product);
+
+    }
+
+
     // Get All Products of a particular user
     @CrossOrigin(origins = "http://localhost:8081/")
     @GetMapping("gproducts")
@@ -84,17 +99,9 @@ public class Controller
     {
         int uId = userServices.finduserid(uEmail);
         List<Object[]> details = productServices.getCartData(uId);
-        for(Object[] o : details){
-            for(Object ob : o){
-                System.out.println(ob);
-            }
-        }
-        List<Product> products =  productServices.getAllProducts();
-        for(Product p : products){
-            System.out.println(p);
-        }
         return details;
     }
+
 
     // to set product of a particular user
     @CrossOrigin(origins = "http://localhost:8081/")
@@ -111,6 +118,27 @@ public class Controller
             userProductServices.addUserProduct(up);
         }
     }
+
+
+    // To delete a product of a particular user
+    @CrossOrigin(origins = "http://localhost:8081/")
+    @PostMapping("dpproducts")
+    public void deleteParticularUserProducts(@RequestParam String uEmail,@RequestParam int pId)
+    {
+        int uId = userServices.finduserid(uEmail);
+        productServices.deleteParticularUserProducts(uId,pId);
+    }
+
+
+    // To get total price of a particular user
+    @CrossOrigin(origins = "http://localhost:8081/")
+    @GetMapping("gtotal")
+    public Object getTotalPrice(@RequestParam String uEmail)
+    {
+        int uId = userServices.finduserid(uEmail);
+        return(productServices.getTotalPrice(uId));
+    }
+
 
     // to get all the products from the product table
     @CrossOrigin(origins = "http://localhost:8081/")

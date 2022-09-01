@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Footer from './Footer.vue'
+    import Footer from './AdminFooter.vue'
     import Sidebar2 from './Sidebar2.vue'
     export default {
         name: 'Admin-comp',

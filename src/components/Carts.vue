@@ -1,28 +1,33 @@
 <template>
     <Sidebar />
-    <section id="carts">
-        <div class="title-text">
+    <div class="title-text">
             <p>Carts</p>
             <h1>Your Collections</h1>
-        </div>
-        <div class="cart-table-div">
-            <table id="cart-table" border="1">
-                <tr id="cart-tr">
-                    <th colspan="2">ProductName</th><th>Quantity</th><th>Price</th><th>Remove</th>
-                </tr>
-                <tr v-for="cartItem in cartDetails" :key="cartItem.pNo">
-                    <td style="padding: 0px;margin:0px;background-color: white;"><img :src="require(`@/assets/products/p${cartItem[0]}.jpg`)" alt class="icon" /></td>
-                    <td> {{ cartItem[1] }} </td>
-                    <td> {{ cartItem[3] }} </td>
-                    <td> {{ cartItem[2] }} </td>
-                    <td style="background-color: white;color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true" @click="removeItem(cartItem)"></i></td>
-                </tr>
+    </div>
+    <div class="admintable">
+        <table class="styled-table">
+            <thead>
                 <tr>
-                    <td colspan="5">Total  =  <i class="fa fa-rupee"></i>{{ this.total }}</td>
+                    <th></th><th>ProductName</th><th>Quantity</th><th>Price</th><th>Remove</th>
                 </tr>
-            </table>
-        </div>
-    </section>
+            </thead>
+            <tbody>
+                <tr v-for="cartItem in cartDetails" :key="cartItem.pNo">
+                    <td><img :src="require(`@/assets/products/${cartItem[3]}`)" alt class="icon" style="width: 100px ;height: 100px;" /></td>
+                    <td> {{ cartItem[1] }} </td>
+                    <td> {{ cartItem[4] }} </td>
+                    <td> {{ cartItem[2] }} </td>
+                    <td style="color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true" @click="removeItem(cartItem)"></i></td>
+                </tr>
+                <tr> 
+                    <td colspan="5">Total  <i class="fa fa-rupee"></i>{{ this.total }}</td>
+                </tr>
+                <tr class="lr">
+                    <button @click="buyNow()" >Buy Now</button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <Footer />
 </template>
 
@@ -50,95 +55,51 @@
                 var uEmail = JSON.parse(localStorage.getItem("CurrentUser"));
                 uEmail = uEmail.uEmail;
                 var cart = await axios.get("http://localhost:8282/gproducts?uEmail="+uEmail);
+                this.total = await axios.get("http://localhost:8282/gtotal?uEmail="+uEmail);
+                this.total = this.total.data;
                 this.cartDetails = cart.data;
-
-                // this.cartDetails = localStorage.getItem('productsInCart');
-                // this.cartDetails = JSON.parse(this.cartDetails);
-                // this.total = localStorage.getItem('totalCost');
+                console.log(this.cartDetails);
+                console.log(this.total);
             },
-            // removeItem(key){
-            //     let incart = key.inCart;
-            //     let cost = key.price*incart;
-            //     delete this.cartDetails[key.name];
-            //     let cartNo = JSON.parse(localStorage.getItem('cartNumbers'));
-            //     localStorage.setItem('cartNumbers',JSON.stringify(cartNo-incart));
-            //     let tcost = JSON.parse(localStorage.getItem('totalCost'));
-            //     localStorage.setItem('totalCost',JSON.stringify(tcost-cost));
-            //     localStorage.setItem('productsInCart',JSON.stringify(this.cartDetails));
-            //     this.displayCart();
-            // }
+            async removeItem(cartItem){
+                var pId = cartItem[0];
+                var uEmail = JSON.parse(localStorage.getItem("CurrentUser"));
+                uEmail = uEmail.uEmail;
+                console.log(uEmail,pId);
+                await axios.post("http://localhost:8282/dpproducts?uEmail="+uEmail+"&pId="+pId);
+                this.total = await axios.get("http://localhost:8282/gtotal?uEmail="+uEmail);
+                this.total = this.total.data;
+                this.displayCart();
+            },
+            buyNow(){
+                this.$router.push('/Payment');
+            }
         }
     }
 </script>
 
 <style>
-    .title-text {
-        text-align: center;
-        padding-bottom: 70px;
-    }
-    .title-text p {
-        margin: auto;
-        font-size: 20px;
-        color: #009688;
-        font-weight: bold;
-        position: relative;
-        display: inline-block;
-        z-index: 1;
-    }
-    .title-text p::after {
-        content: '';
-        width: 50px;
-        height: 35px;
-        background: linear-gradient(#019587,#fff);
-        position: absolute;
-        top: -20px;
-        left: 0;
-        z-index: -1;
-        transform: rotate(10deg);
-        border-top-left-radius: 35px;
-        border-bottom-right-radius: 35px;
-    }
-    .title-text h1 {
-        font-size: 50px;
-    }
-    #carts {
+    tbody .lr {
+        background-color: #009688;
+        height: 54px;
         width: 100%;
-        padding: 70px;
-        margin-bottom: 55px;
     }
-    .cart-table-div {
-        margin-left: auto;
-        margin-right: auto;
+    .lr button{
+        cursor: pointer;
+        width: 727.5%;
+        height: 54px;
+        background-color: #009688;
+        margin: auto;
+        position: relative;
+        text-decoration: none;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: whitesmoke;
     }
-    #cart-table {
-        border: 7px solid #019587;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 4px;
-        box-shadow: 5px 5px 10px #019587;
-    }
-    #img-td {
-        margin: 0;
-        padding: 0;
-    }
-    #cart-table tr td {
-        font-weight: bolder;
-        font-family: monospace;
-        font-size: 17px;
-        color: white;
-        background-color: gray;
-        border: 3px solid #019587;
-        padding: 10px 30px;
-    }
-    #cart-table tr td img {
-        width: 120px;
-        height: 50px;
-    }
-    #cart-table th {
-        color: #019587;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size:x-large;
-        padding: 12px;
-        background-color: white;
+    .lr button:hover {
+        background-color: whitesmoke;
+        transition:cubic-bezier(0.075, 0.82, 0.165, 1);
+        color: #009688;
     }
 </style>

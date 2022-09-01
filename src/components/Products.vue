@@ -1,81 +1,21 @@
 <template>
     <Sidebar />
-    <section id="product">
-            <div class="title-text">
+    <div class="title-text">
                 <p>PRODUCTS</p>
                 <h1>Shop Our Best Products</h1>
-            </div>
-            <!-- <div class="container">
-                <div class="image">
-                    <img src="../assets/products/p1.jpg" alt="Hair Serum">
-                    <h3>Hair Serum</h3>
-                    <h3>$17.0</h3>
-                    <button class="add-cart cart1" v-on:click="cartNumbers(products[0])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p2.jpg" alt="Dry Shampoo">
-                    <h3>Dry Shampoo</h3>
-                    <h3>$14.0</h3>
-                    <button class="add-cart cart2" v-on:click="cartNumbers(products[1])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p3.jpg" alt="Hair Color">
-                    <h3>Hair Color</h3>
-                    <h3>$09.0</h3>
-                    <button class="add-cart cart3" v-on:click="cartNumbers(products[2])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p4.jpg" alt="Hair Mask">
-                    <h3>Hair Mask</h3>
-                    <h3>$11.0</h3>
-                    <button class="add-cart cart4" v-on:click="cartNumbers(products[3])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p5.jpg" alt="Hair Cream">
-                    <h3>Hair Cream</h3>
-                    <h3>$22.0</h3>
-                    <button class="add-cart cart5" v-on:click="cartNumbers(products[4])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p6.jpg" alt="Hair Wax">
-                    <h3>Hair Wax</h3>
-                    <h3>$24.0</h3>
-                    <button class="add-cart cart6" v-on:click="cartNumbers(products[5])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p7.jpg" alt="Hair Gel">
-                    <h3>Hair Gel</h3>
-                    <h3>$07.0</h3>
-                    <button class="add-cart cart7" v-on:click="cartNumbers(products[6])">Add Cart</button>
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p8.jpg" alt="Hair Spray">
-                    <h3>Hair Spray</h3>
-                    <h3>$27.0</h3>
-                    <button class="add-cart cart8" v-on:click="cartNumbers(products[7])">Add Cart</button>
-                    <input type="hidden" value="10">
-                </div>
-                <div class="image">
-                    <img src="../assets/products/p9.jpg" alt="Beardo Oil">
-                    <h3>Beardo Oil</h3>
-                    <h3>$19.0</h3>
-                    <button class="add-cart cart9" v-on:click="cartNumbers(products[8])">Add Cart</button>
-                </div>
-            </div> -->
+    </div>
+    <section id="product">        
             <div class="container">
                 <div class="image" v-for="product in productss" :key="product.pNo" >
-                    <img :src="require(`@/assets/products/p${product.pNo}.jpg`)" alt class="icon" />
+                    <img :src="require(`@/assets/products/${product.pImg}`)" alt class="icon" />
                     <h3>{{product.pName}}</h3>
-                    <h3>$ {{product.pPrice}}</h3>
-                    <i class="add-cart" @click="cartNumbers(product)">Add Cart</i>
-                    <!-- <button><i class="add-cart" @click="cartNumbers(product)">Add Cart</i></button> -->
-                    <!-- <button class="add-cart cart1" @click="cartNumbers(product)">Add Cart</button> -->
+                    <h3>₹ {{product.pPrice}}</h3>
+                    <i class="add-cart" @click="addToCart(product)">Add Cart</i>
                 </div>
             </div>
         </section>
         <Footer />
 </template>
-
 
 <script>
     import axios from 'axios'
@@ -89,72 +29,6 @@
         },
         data() {
             return {
-                // products : [
-                // {
-                //     name: 'Hair Serum',
-                //     tag: 'Hair Serum',
-                //     price: 17,
-                //     inCart: 0,
-                //     pno: 1
-                // },
-                // {
-                //     name: 'Dry Shampoo',
-                //     tag: 'Dry Shampoo',
-                //     price: 14,
-                //     inCart: 0,
-                //     pno: 2
-                // },
-                // {
-                //     name: 'Hair Color',
-                //     tag: 'Hair Color',
-                //     price: 9,
-                //     inCart: 0,
-                //     pno: 3
-                    
-                // },
-                // {
-                //     name: 'Hair Mask',
-                //     tag: 'Hair Mask',
-                //     price: 11,
-                //     inCart: 0,
-                //     pno: 4
-                // },
-                // {
-                //     name: 'Hair Cream',
-                //     tag: 'Hair Cream',
-                //     price: 22,
-                //     inCart: 0,
-                //     pno: 5
-                // },
-                // {
-                //     name: 'Hair Wax',
-                //     tag: 'Hair Wax',
-                //     price: 24,
-                //     inCart: 0,
-                //     pno: 6
-                // },
-                // {
-                //     name: 'Hair Gel',
-                //     tag: 'Hair Gel',
-                //     price: 7,
-                //     inCart: 0,
-                //     pno: 7
-                // },
-                // {
-                //     name: 'Hair Spray',
-                //     tag: 'Hair Spray',
-                //     price: 27,
-                //     inCart: 0,
-                //     pno: 8
-                // },
-                // {
-                //     name: 'Beardo Oil',
-                //     tag: 'Beardo Oil',
-                //     price: 19,
-                //     inCart: 0,
-                //     pno: 9
-                // }
-                // ],
                 pro:'',
                 productss:''
             }
@@ -168,7 +42,7 @@
                 var pro = await axios.get("http://localhost:8282/getallproducts");
                 this.productss = pro.data;
             },
-            async cartNumbers(product) 
+            async addToCart(product) 
             {
                 console.log(product)
                 var uEmail = JSON.parse(localStorage.getItem("CurrentUser"));
@@ -181,7 +55,6 @@
                     "pQty" : ""+1
                 }
                 this.pro = await axios.post("http://localhost:8282/spproducts?uEmail="+uEmail+"",data);
-                //this.pro = await axios.post("http://localhost:8282/spproducts?uEmail="+uEmail+"&pId="+pId);
             }
             //     let productNumbers = localStorage.getItem("cartNumbers");
             //     productNumbers = parseInt(productNumbers);

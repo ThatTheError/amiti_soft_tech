@@ -9,6 +9,9 @@ import Carts from "./components/Carts"
 import Testimonials from "./components/Testimonials"
 import Admin from "./components/Admin"
 import AddProduct from "./components/AddProduct"
+import AdminProduct from "./components/AdminProduct"
+import Payment from "./components/Payment"
+import AdminFooter from "./components/AdminFooter"
 
 const routes = [
     {
@@ -60,6 +63,21 @@ const routes = [
         name:'AddProduct',
         path:'/AddProduct',
         component:AddProduct
+    },
+    {
+        name:'AdminProduct',
+        path:'/AdminProduct',
+        component:AdminProduct
+    },
+    {
+        name:'Payment',
+        path:'/Payment',
+        component:Payment
+    },
+    {
+        name:'AdminFooter',
+        path:'/AdminFooter',
+        component:AdminFooter
     }
 ];
 

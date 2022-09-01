@@ -63,6 +63,10 @@
                     alert("Not a Registered User Please Register!!");
                     this.$router.push('/SignUp');
                 }
+                else if(result.data == 3){
+                    localStorage.setItem("CurrentUser",JSON.stringify(data));
+                    this.$router.push('/Admin');
+                }
                 else{
                     localStorage.setItem("CurrentUser",JSON.stringify(data));
                     this.$router.push('/Home') ;
