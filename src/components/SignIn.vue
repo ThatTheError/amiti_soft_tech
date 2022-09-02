@@ -118,7 +118,7 @@
     }
     body {
         background:#efefef;
-        /* background-image: url(../assets/images/signinbg3.webp); */
+        /* background-image: url(../assets/images/banner.jpg); */
         font-family: 'roboto', sans-serif;
     }
 

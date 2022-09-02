@@ -12,11 +12,17 @@ import AddProduct from "./components/AddProduct"
 import AdminProduct from "./components/AdminProduct"
 import Payment from "./components/Payment"
 import AdminFooter from "./components/AdminFooter"
+import HomeAll from "./components/HomeAll"
 
 const routes = [
     {
-        name:'SignIn',
+        name:'HomeAll',
         path:'/',
+        component:HomeAll
+    },
+    {
+        name:'SignIn',
+        path:'/SignIn',
         component:SignIn
     },
     {
