@@ -20,7 +20,7 @@
                     <td><img :src="require(`@/assets/products/${product.pImg}`)" alt class="icon" style="width: 100px ;height: 100px;" /></td>
                     <td> {{product.pNo}} </td>
                     <td> {{ product.pName }} </td>
-                    <td> {{ product.pPrice }} </td>
+                    <td> <i class="fa fa-rupee"></i>{{ product.pPrice }} </td>
                     <td style="color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true" @click="removeProduct(product)"></i></td>
                 </tr>
             </tbody>   

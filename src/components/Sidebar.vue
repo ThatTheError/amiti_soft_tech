@@ -31,10 +31,16 @@
             },
             confirmUser() {
                 if(confirm("Are you sure ? want to leave the page ?")){
+                    
                     this.$router.push('/');
+                    setTimeout("preventBack()", 0);
+                    window.onunload=function(){null};
                 }else{
                     this.$router.push('/Home');
                 }
+            },
+            preventBack(){
+                window.history.forward();
             }
         },
         data(){

@@ -50,7 +50,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                         <p>
                             Ambience is really good . Service is 'A' class . There are so many beauty and hair style services with products. visit once you can feel the difference. Highly impressed Thank you Indian Hairline.

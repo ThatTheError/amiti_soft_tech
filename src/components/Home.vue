@@ -28,7 +28,7 @@
             Features,
             Services,
             Footer
-        }
+        },
     }
 </script>
 <style>

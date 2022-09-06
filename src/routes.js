@@ -14,6 +14,8 @@ import Payment from "./components/Payment"
 import AdminFooter from "./components/AdminFooter"
 import HomeAll from "./components/HomeAll"
 
+import Practice from "./components/Practice"
+
 const routes = [
     {
         name:'HomeAll',
@@ -84,6 +86,11 @@ const routes = [
         name:'AdminFooter',
         path:'/AdminFooter',
         component:AdminFooter
+    },
+    {
+        name:'Practice',
+        path:'/Practice',
+        component:Practice
     }
 ];
 

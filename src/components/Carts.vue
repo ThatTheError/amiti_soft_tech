@@ -16,7 +16,7 @@
                     <td><img :src="require(`@/assets/products/${cartItem[3]}`)" alt class="icon" style="width: 100px ;height: 100px;" /></td>
                     <td> {{ cartItem[1] }} </td>
                     <td> {{ cartItem[4] }} </td>
-                    <td> {{ cartItem[2] }} </td>
+                    <td> <i class="fa fa-rupee"></i>{{ cartItem[2] }} </td>
                     <td style="color:red;cursor: pointer;"><i class="fa fa-trash fa-2x" aria-hidden="true" @click="removeItem(cartItem)"></i></td>
                 </tr>
                 <tr> 
@@ -86,7 +86,7 @@
     }
     .lr button{
         cursor: pointer;
-        width: 727.5%;
+        width: 700.5%;
         height: 54px;
         background-color: #009688;
         margin: auto;

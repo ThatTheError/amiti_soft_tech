@@ -7,7 +7,7 @@
                 <!-- <li><button v-on:click="this.$router.push('/SignIn')">Testimonials   </button><i class="fa fa-plus-circle" aria-hidden="true"></i></li> -->
                 <li><button v-on:click="this.$router.push('/SignIn')">Products   </button><i class="fa fa-product-hunt" aria-hidden="true"></i></li>
                 <!-- <li><button v-on:click="this.$router.push('/SignIn')">Contact   </button><i class="fa fa-phone-square" aria-hidden="true"></i></li> -->
-                <li><button v-on:click="this.$router.push('/SignIn')">SignIn   </button><i class="fa fa-phone-square" aria-hidden="true"></i></li>
+                <li><button v-on:click="this.$router.push('/SignIn')">SignIn   </button><i class="fa fa-sign-in" aria-hidden="true"></i></li>
                 <!-- <li><button v-on:click="confirmUser()">LogOut   </button><i class="fa fa-sign-out" aria-hidden="true"></i></li> -->
             </ul>
         </nav>
